@@ -9,9 +9,18 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace Hyperf\Nacos\Service;
+namespace HyperfTest\Nacos;
 
-interface IPReaderInterface
+use Mockery;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * Class AbstractTestCase.
+ */
+abstract class AbstractTestCase extends TestCase
 {
-    public function read(): string;
+    protected function tearDown(): void
+    {
+        Mockery::close();
+    }
 }
