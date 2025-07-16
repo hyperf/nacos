@@ -29,7 +29,7 @@ class ConfigQueryResponse extends Response
     public function __construct(array $json)
     {
         $this->content = $json['content'];
-        $this->encryptedDataKey = $json['encryptedDataKey'];
+        $this->encryptedDataKey = (string)$json['encryptedDataKey'];
         $this->contentType = $json['contentType'];
         $this->md5 = $json['md5'];
         $this->lastModified = $json['lastModified'];
