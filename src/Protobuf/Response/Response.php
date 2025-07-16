@@ -41,6 +41,9 @@ class Response implements JsonDeSerializable, Stringable
         $payload = Parser::deserializeMessage([Payload::class, 'decode'], $data);
 
         $json = Json::decode($payload->getBody()->getValue());
+        if(!isset($json['success'])){
+            $json['success'] = $json['errorCode'] === 0;
+        }
         $class = Mapping::$mappings[$payload->getMetadata()->getType()] ?? null;
         if (! $class) {
             return new static(...self::namedParameters($json));
